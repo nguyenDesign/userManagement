@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add new user</title>
+</head>
+<body>
+
+<form action="/api/user/<%=user._id%>?_method=PUT" method="post">
+    <label>
+        <p>User name:</p>
+        <input placeholder="<%=user.name%>" type="text" name="user[name]">
+    </label>
+    <label>
+        <p>Role:</p>
+        <select name="user[role]" >
+            <%
+                let roles = ['admin','customer']
+                for(role of roles){%>
+                <%if (role === user.role){%>
+                    <option value=<%=role%> selected><%=role%> </option>
+                <%}else{%>
+                    <option value=<%=role%>><%=role%></option>
+                <%}%>
+            <%}%>
+        </select>
+    </label>
+    <label>
+        <button>Submit changes</button>
+    </label>
+</form>
+</body>
+</html>
