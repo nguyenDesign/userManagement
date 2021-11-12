@@ -24,6 +24,7 @@ app.engine('ejs', ejsMate)
 //Set up body parser
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
+app.use(express.static(path.join(__dirname,"public")))
 //Set up the routes
 app.use('/api/user', userRoute)
 app.get('/sample',(req,res)=>{
