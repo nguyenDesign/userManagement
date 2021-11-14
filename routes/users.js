@@ -3,28 +3,23 @@ const User = require('../model/userModel')
 const userController = require('../controller/userController')
 
 // Prefix: /api/user
-routes.get('/', async (req,res)=>{
+routes.get('/',  (req,res)=>{
     userController.index(req,res)
 })
-routes.post('/', async(req,res)=>{
-    let user = new User(req.body.user)
-    await user.save()
-    res.redirect('/api/user')
+routes.post('/', (req,res)=>{
+    userController.CreateUser(req,res)
 })
-routes.get('/new', async(req,res)=>{
-    res.render('new')
+routes.get('/new', (req,res)=>{
+    userController.renderCreateForm(req,res)
 })
-routes.get('/:id', async(req,res)=>{
-    let user = await User.findById(req.params.id)
-    res.render('show',{user})
+routes.get('/:id', (req,res)=>{
+    userController.renderUserInfo(req,res)
 })
-routes.get("/:id/edit", async(req,res)=>{
-    let user = await User.findById(req.params.id)
-    res.render('edit', {user})
+routes.get("/:id/edit", (req,res)=>{
+    userController.renderEditForm(req,res)
 })
-routes.put('/:id', async (req,res)=>{
-    await User.findByIdAndUpdate(req.params.id, {...req.body.user})
-    res.redirect(`/api/user/${req.params.id}`)
+routes.put('/:id',  (req,res)=>{
+    userController.upDateUser(req,res)
 })
 
 

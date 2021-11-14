@@ -6,9 +6,9 @@ module.exports.CreateUser = async function(req,res){
     res.redirect('/api/user')
 }
 
-module.exports.UpdateUser = async function(req,res){
+module.exports.upDateUser = async function(req,res){
     await User.findByIdAndUpdate(req.params.id,{...req.body.user})
-    res.render(`/api/user/${req.params.id}`)
+    res.redirect(`/api/user/${req.params.id}`)
 }
 
 module.exports.DeleteUser = async function(req,res){
@@ -28,4 +28,9 @@ module.exports.renderCreateForm = function(req,res){
 module.exports.renderUserInfo = async function(req,res){
     let user = await User.findById(req.params.id)
     res.render('show',{user})
+}
+
+module.exports.renderEditForm = async function(req,res){
+    let user = await User.findById(req.params.id)
+    res.render('edit', {user})
 }

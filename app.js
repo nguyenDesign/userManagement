@@ -27,9 +27,7 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,"public")))
 //Set up the routes
 app.use('/api/user', userRoute)
-app.get('/sample',(req,res)=>{
-    res.render("sample")
-})
+
 app.listen(PORT, ()=>{
     console.log("User service is deployed on port: " + PORT)
 })
