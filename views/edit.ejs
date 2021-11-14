@@ -1,36 +1,66 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add new user</title>
-</head>
-<body>
+<%layout('layout/boilerplate')%>
 
-<form action="/api/user/<%=user._id%>?_method=PUT" method="post">
-    <label>
-        <p>User name:</p>
-        <input placeholder="<%=user.name%>" type="text" name="user[name]">
-    </label>
-    <label>
-        <p>Role:</p>
-        <select name="user[role]" >
-            <%
-                let roles = ['admin','customer']
-                for(role of roles){%>
-                <%if (role === user.role){%>
-                    <option value=<%=role%> selected><%=role%> </option>
-                <%}else{%>
-                    <option value=<%=role%>><%=role%></option>
-                <%}%>
-            <%}%>
-        </select>
-    </label>
-    <label>
-        <button>Submit changes</button>
-    </label>
-</form>
-</body>
-</html>
+<head>
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+
+<script>
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.requires-validation')
+        Array.from(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Infomation of <%=user.name%></h3>
+                    <p>Fill in the data below.</p>
+                    <form class="requires-validation" action="/api/user/<%=user._id%>?_method=PUT" method="post" novalidate>
+                        <div class="col-md-12">
+                            <label >User name:</label>
+                            <input class="form-control" type="text" name="user[name]" placeholder="<%=user.name%>" required>
+                            <div class="valid-feedback">Username field is valid!</div>
+                            <div class="invalid-feedback">Username field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label style="margin-top: 25px">Address:</label>
+                            <input class="form-control" type="email" name="user[address]" placeholder="<%=user.address%>" required>
+                            <div class="valid-feedback">Address field is valid!</div>
+                            <div class="invalid-feedback">Address field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label style="margin-top: 25px">Role:</label>
+                            <select class="form-select mt-3" name="user[role]"required>
+                                <option selected disabled value="<%=user.role%>"><%=user.role%></option>
+                                <option value="moderator">Moderator</option>
+                                <option value="member">Member</option>
+                            </select>
+                            <div class="valid-feedback">You selected a position!</div>
+                            <div class="invalid-feedback">Please select a position!</div>
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

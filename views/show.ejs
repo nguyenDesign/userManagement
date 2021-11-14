@@ -1,87 +1,31 @@
 <%layout('layout/boilerplate')%>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
+    <script>
+        function openEditForm(id){
+            window.location.replace(`/api/user/${id}/edit`)
+        }
+    </script>
 </head>
-<script>
-    (function () {
-        'use strict'
-        const forms = document.querySelectorAll('.requires-validation')
-        Array.from(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
-
-<div class="form-body">
-    <div class="row">
-        <div class="form-holder">
+<!--<div class="form-body">-->
+<!--    <div class="row">-->
+<!--        <div class="form-holder">-->
             <div class="form-content">
                 <div class="form-items">
                     <h3>Infomation of <%=user.name%></h3>
-                    <p>Fill in the data below.</p>
-                    <form class="requires-validation" action="/api/user/<%=user._id%>?_method=PUT" method="post" novalidate>
                         <div class="col-md-12">
-                            <label >User name:</label>
-                            <input class="form-control" type="text" name="name" placeholder="<%=user.name%>" required>
-                            <div class="valid-feedback">Username field is valid!</div>
-                            <div class="invalid-feedback">Username field cannot be blank!</div>
+                            <label >User name: <%=user.name%></label>
                         </div>
-
                         <div class="col-md-12">
-                            <label style="margin-top: 25px">Address:</label>
-                            <input class="form-control" type="email" name="email" placeholder="<%=user.address%>" required>
-                            <div class="valid-feedback">Address field is valid!</div>
-                            <div class="invalid-feedback">Address field cannot be blank!</div>
+                            <label style="margin-top: 25px">Address: <%=user.address%></label>
                         </div>
-
                         <div class="col-md-12">
-                            <label style="margin-top: 25px">Role:</label>
-                            <select class="form-select mt-3" required>
-                                <option selected disabled value="<%=user.role%>"><%=user.role%></option>
-                                <option value="moderator">Moderator</option>
-                                <option value="member">Member</option>
-                            </select>
-                            <div class="valid-feedback">You selected a position!</div>
-                            <div class="invalid-feedback">Please select a position!</div>
+                            <label style="margin-top: 25px">Role: <%=user.role%></label>
                         </div>
 
-                        <div class="col-md-12 mt-3">
-                            <label class="mb-3 mr-1" for="gender">Gender: </label>
-
-                            <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="secret" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
-                            <div class="valid-feedback mv-up">You selected a gender!</div>
-                            <div class="invalid-feedback mv-up">Please select a gender!</div>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                            <label class="form-check-label">I confirm that all data are correct</label>
-                            <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
-                        </div>
-
-
-                        <div class="form-button mt-3">
-                            <button id="submit" type="submit" class="btn btn-primary">Register</button>
-                        </div>
-                    </form>
+                    <a href="/api/user/<%=user._id%>/edit">Edit</a>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
