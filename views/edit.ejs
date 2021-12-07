@@ -32,21 +32,21 @@
                     <form class="requires-validation" action="/api/user/<%=user._id%>?_method=PUT" method="post" novalidate>
                         <div class="col-md-12">
                             <label >User name:</label>
-                            <input class="form-control" type="text" name="user[name]" placeholder="<%=user.name%>" required>
+                            <input class="form-control" type="text" name="user[name]" value="<%=user.name%>" required>
                             <div class="valid-feedback">Username field is valid!</div>
                             <div class="invalid-feedback">Username field cannot be blank!</div>
                         </div>
 
                         <div class="col-md-12">
                             <label style="margin-top: 25px">Address:</label>
-                            <input class="form-control" type="email" name="user[address]" placeholder="<%=user.address%>" required>
+                            <input class="form-control" type="email" name="user[address]" value="<%=user.address%>" required>
                             <div class="valid-feedback">Address field is valid!</div>
                             <div class="invalid-feedback">Address field cannot be blank!</div>
                         </div>
 
                         <div class="col-md-12">
                             <label style="margin-top: 25px">Role:</label>
-                            <select class="form-select mt-3" name="user[role]"required>
+                            <select class="form-select mt-3" name="user[role]" required>
                                 <option selected disabled value="<%=user.role%>"><%=user.role%></option>
                                 <option value="moderator">Moderator</option>
                                 <option value="member">Member</option>

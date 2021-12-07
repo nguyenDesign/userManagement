@@ -1,5 +1,4 @@
 const routes = require('express').Router({mergeParams:true})
-const User = require('../model/userModel')
 const userController = require('../controller/userController')
 
 // Prefix: /api/user
