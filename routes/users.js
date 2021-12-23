@@ -1,12 +1,13 @@
 const routes = require('express').Router({mergeParams:true})
 const userController = require('../controller/userController')
-
+const logger = require('../middleware/logging')
 // Prefix: /api/user
 routes.get('/',  (req,res)=>{
     userController.index(req,res)
 })
 routes.post('/', (req,res)=>{
     userController.CreateUser(req,res)
+    logger.log("info","New user has been created")
 })
 routes.get('/new', (req,res)=>{
     userController.renderCreateForm(req,res)

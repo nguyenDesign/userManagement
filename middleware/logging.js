@@ -8,9 +8,10 @@ const logLevel = {
     trace: 5
 }
 const logger = createLogger({
-    level: logLevel,
-    transports: [new transports.Console()],
-    format: format.combine(format.timestamp(), format.json())
+    transports: [
+        new transports.Console(),
+        new transports.File({filename: 'combined.log'})
+    ]
 })
 
 

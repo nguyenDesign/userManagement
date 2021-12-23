@@ -21,7 +21,7 @@
             <p>Role:</p>
             <select name="user[role]">
             <%
-            let roles = ['admin','customer']
+            let roles = ['member']
             for(role of roles){%>
                 <option value=<%=role%>><%=role%></option>
             <%}%>
@@ -31,9 +31,9 @@
             <p>Address:</p>
 
         </label>
-        <label>
-            <button>Add user</button>
-        </label>
+        <div class="form-button mt-3">
+            <button id="submit" type="submit" class="btn btn-primary">Create</button>
+        </div>
     </form>
 </body>
 </html>
