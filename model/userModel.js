@@ -39,6 +39,9 @@ userSchema.pre('save',async function(next){
     next()
 })
 
+userSchema.statics.findByCredentials = async function(userName,password){
+
+}
 const userModel = mongoose.model('User', userSchema)
 
 module.exports = userModel

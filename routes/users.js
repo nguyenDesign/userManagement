@@ -1,9 +1,13 @@
 const routes = require('express').Router({mergeParams:true})
 const userController = require('../controller/userController')
 const logger = require('../middleware/logging')
+const auth = require("../middleware/auth")
 // Prefix: /api/user
-routes.get('/',  (req,res)=>{
+routes.get('/',auth,(req,res)=>{
     userController.index(req,res)
+})
+routes.get('/login', (req,res)=>{
+    userController.renderLoginPage(req,res)
 })
 routes.post('/', (req,res)=>{
     userController.CreateUser(req,res)

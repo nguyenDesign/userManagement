@@ -44,3 +44,7 @@ module.exports.renderEditForm = wrapAsync(async function(req,res){
     let user = await User.findById(req.params.id)
     res.render('edit', {user})
 })
+
+module.exports.renderLoginPage = function(req,res){
+    res.render('login')
+}
