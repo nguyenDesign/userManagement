@@ -21,6 +21,9 @@ routes.get("/:id/edit", (req,res)=>{
 routes.put('/:id',  (req,res)=>{
     userController.upDateUser(req,res)
 })
+routes.delete('/:id/delete', (req,res)=>{
+    userController.DeleteUser(req,res)
 
+})
 
 module.exports = routes

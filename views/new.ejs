@@ -18,6 +18,10 @@
             <input type="password" name="user[password]" required>
         </label>
         <label>
+            <p>Address:</p>
+            <input type="text" name="user[address]" required>
+        </label>
+        <label>
             <p>Role:</p>
             <select name="user[role]">
             <%
@@ -27,13 +31,12 @@
             <%}%>
             </select>
         </label>
-        <label>
-            <p>Address:</p>
-
+        <label for="">
+            <div class="form-button mt-3">
+                <button id="submit" type="submit" class="btn btn-primary">Create</button>
+            </div>
         </label>
-        <div class="form-button mt-3">
-            <button id="submit" type="submit" class="btn btn-primary">Create</button>
-        </div>
+
     </form>
 </body>
 </html>

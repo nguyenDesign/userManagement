@@ -9,7 +9,6 @@ const logLevel = {
 }
 const logger = createLogger({
     transports: [
-        new transports.Console(),
         new transports.File({filename: 'combined.log'})
     ]
 })

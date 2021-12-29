@@ -1,8 +1,17 @@
 const User = require('../model/userModel')
 const wrapAsync = require('../middleware/wrapAsync')
 module.exports.CreateUser = wrapAsync(async function(req,res){
-    let user = new User(req.body.user)
-    await user.save()
+    if (typeof req.body.user !== 'undefined'){
+        console.log(req.body.user.name)
+        let user = new User(req.body.user)
+        await user.save()
+    }
+    else{
+        let {name,password,address} = req.body
+        let user = new User({name, password, address})
+        await user.save()
+
+    }
     res.redirect('/api/user')
 })
 
@@ -13,7 +22,8 @@ module.exports.upDateUser = wrapAsync(async function(req,res){
 
 module.exports.DeleteUser = wrapAsync(async function(req,res){
     await User.findByIdAndDelete(req.params.id)
-    res.render('/api/user')
+    let response = "User is deleted"
+    res.end(response)
 })
 
 module.exports.index = wrapAsync(async function(req,res){

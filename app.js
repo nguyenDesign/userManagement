@@ -6,6 +6,7 @@ const path = require('path')
 const userRoute = require('./routes/users')
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
+const bodyParser = require('body-parser')
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -23,6 +24,7 @@ app.set("view engine", "ejs")
 app.engine('ejs', ejsMate)
 //Set up body parser
 app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,"public")))
 //Set up the routes

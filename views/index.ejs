@@ -4,6 +4,16 @@
         $(Document).ready(function(){
             $("#userInfo").DataTable()
         })
+
+        function deleteItem(id){
+            $.ajax({
+                url: `/api/user/${id}/delete`,
+                type: 'DELETE',
+                success: function(result){
+                    alert(result)
+                }
+            })
+        }
     </script>
     <link rel="stylesheet" href="/css/datatable.css">
     <link rel="stylesheet" href="/css/twitter-boostrap.css">
@@ -19,17 +29,19 @@
         <th>Up Votes</th>
         <th>Down Votes</th>
         <th>Level</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
     <a href="/api/user/new">Add new user</a>
-    <%for(let user of users){%>
+    <%for(let user of users){ %>
     <tr>
         <td><a href="/api/user/<%=user.id%>"><%=user.name%></a></td>
         <td><%=user.address%></td>
         <td><%=user.upvote%></td>
         <td><%=user.downvote%></td>
         <td><%=user.level%></td>
+        <td><button onclick="deleteItem('<%=user.id%>')">Delete</button></td>
     </tr>
     <%}%>
     </tbody>
