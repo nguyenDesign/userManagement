@@ -48,3 +48,13 @@ module.exports.renderEditForm = wrapAsync(async function(req,res){
 module.exports.renderLoginPage = function(req,res){
     res.render('login')
 }
+
+module.exports.login = wrapAsync(async function(req,res){
+    let {username, password} = req.body
+    let user = await User.findByCredentials(username,password)
+    if(user){
+        let token = await user.generateAuthToken()
+        res.cookie('auth-token', token)
+    }
+    res.redirect("/api/user")
+})

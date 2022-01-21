@@ -106,3 +106,7 @@ dist
 =======
 .tern-port
 >>>>>>> bfc69ae (Add git ignore)
+
+combined.log
+error.log
+.idea

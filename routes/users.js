@@ -9,6 +9,9 @@ routes.get('/',auth,(req,res)=>{
 routes.get('/login', (req,res)=>{
     userController.renderLoginPage(req,res)
 })
+routes.post('/login', async (req,res)=>{
+    userController.login(req,res)
+})
 routes.post('/', (req,res)=>{
     userController.CreateUser(req,res)
     logger.log("info","New user has been created")
