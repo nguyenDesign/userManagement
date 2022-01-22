@@ -7,7 +7,7 @@
 
         function deleteItem(id){
             $.ajax({
-                url: `/api/user/${id}/delete`,
+                url: `/api/user/${id}`,
                 type: 'DELETE',
                 success: function(result){
                     alert(result)

@@ -7,6 +7,7 @@ const userRoute = require('./routes/users')
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const cookieParser = require('cookie-parser')
+const auth = require('./middleware/auth')
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -29,7 +30,7 @@ app.use(cookieParser())
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,"public")))
 //Set up the routes
-app.use('/api/user', userRoute)
+app.use('/api/user', auth, userRoute)
 
 app.listen(PORT, ()=>{
     console.log("User service is deployed on port: " + PORT)

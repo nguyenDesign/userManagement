@@ -3,34 +3,24 @@ const userController = require('../controller/userController')
 const logger = require('../middleware/logging')
 const auth = require("../middleware/auth")
 // Prefix: /api/user
-routes.get('/',auth,(req,res)=>{
-    userController.index(req,res)
-})
-routes.get('/login', (req,res)=>{
-    userController.renderLoginPage(req,res)
-})
-routes.post('/login', async (req,res)=>{
-    userController.login(req,res)
-})
-routes.post('/', (req,res)=>{
-    userController.CreateUser(req,res)
-    logger.log("info","New user has been created")
-})
-routes.get('/new', (req,res)=>{
-    userController.renderCreateForm(req,res)
-})
-routes.get('/:id', (req,res)=>{
-    userController.renderUserInfo(req,res)
-})
-routes.get("/:id/edit", (req,res)=>{
-    userController.renderEditForm(req,res)
-})
-routes.put('/:id',  (req,res)=>{
-    userController.upDateUser(req,res)
-})
-routes.delete('/:id/delete', (req,res)=>{
-    userController.DeleteUser(req,res)
+routes.route('/')
+    .get(userController.index)
+    .post(userController.CreateUser)
 
-})
+routes.route("/:id")
+    .get(userController.renderUserInfo)
+    .put(userController.upDateUser)
+    .delete(userController.DeleteUser)
+
+routes.route('/login')
+    .get(userController.renderLoginPage)
+    .post(userController.login)
+
+routes.route('/new')
+    .get(userController.renderCreateForm)
+
+routes.route('/:id/edit')
+    .get(userController.renderEditForm)
+
 
 module.exports = routes
